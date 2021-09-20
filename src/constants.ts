@@ -1,1 +1,1 @@
-export const GRID_TABLE_DIMENSION: number = 50;
+export const GRID_TABLE_DIMENSION = 50;
