@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { GridTable } from './GridTable';
 import { defaultTheme } from '../theme/theme';
+import { GRID_TABLE_DIMENSION } from '../constants';
 
 test('should render grid table', () => {
   const { container } = render(
@@ -13,5 +14,5 @@ test('should render grid table', () => {
   );
 
   const cells = container.querySelectorAll('td');
-  expect(cells.length).toBe(2500);
+  expect(cells.length).toBe(GRID_TABLE_DIMENSION * GRID_TABLE_DIMENSION);
 });
