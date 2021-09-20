@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { GRID_TABLE_DIMENSION } from '../constants';
 
 type TableDataType = Array<Array<number>>;
 
@@ -24,11 +25,11 @@ const getCellNeighbours = (rowIdx: number, cellIdx: number, tableRows: TableData
   return neighbours;
 };
 
-export const useGridTable = (): GridTableReturnType => {
+export const useGridTable = (size = GRID_TABLE_DIMENSION): GridTableReturnType => {
   const [rows, setRows] = useState(() => {
     // Generate array of length 50 with randomly filled rows
-    return Array.from({ length: 50 }, () => {
-      return Array.from({ length: 50 }, () => Math.round(Math.random()));
+    return Array.from({ length: size }, () => {
+      return Array.from({ length: size }, () => Math.round(Math.random()));
     });
   });
 

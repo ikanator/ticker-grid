@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GridCell should render empty cell 1`] = `
+<div>
+  <table>
+    <tbody>
+      <tr>
+        <td
+          class="sc-bdfBQB iPCxOh"
+        />
+        <td
+          class="sc-bdfBQB bANFBv"
+        />
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
