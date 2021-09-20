@@ -1,9 +1,15 @@
 export interface ThemeColors {
-  primary: string;
-  secondary: string;
+  common: {
+    empty: string;
+    filled: string;
+    secondary: string;
+  };
 }
 
 export const colors: ThemeColors = {
-  primary: '#000',
-  secondary: '#fff',
+  common: {
+    empty: '#fff',
+    filled: '#000',
+    secondary: '#ccc',
+  },
 };

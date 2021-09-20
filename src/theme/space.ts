@@ -1,19 +1,14 @@
 export interface Space {
-  NONE: number;
-  XS: number;
-  S: number;
-  M: number;
-  L: number;
-  XL: number;
-  XXL: number;
+  none: number;
+  sm: number;
+  md: number;
+  lg: number;
 }
 
+// 0, 2, 4, 8... is preferred, but used custom ones here
 export const space: Space = {
-  NONE: 0,
-  XS: 2,
-  S: 4,
-  M: 8,
-  L: 16,
-  XL: 32,
-  XXL: 64,
+  none: 0,
+  sm: 2,
+  md: 6,
+  lg: 12,
 };
