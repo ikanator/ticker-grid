@@ -8,8 +8,8 @@ type GridTableReturnType = {
   refresh: () => void;
 };
 
-const getCellNeighbours = (rowIdx: number, cellIdx: number, tableRows: TableDataType): Array<number> => {
-  const neighbours = [];
+const getCellLiveNeighboursCount = (rowIdx: number, cellIdx: number, tableRows: TableDataType): number => {
+  let count = 0;
 
   // List cells around current
   for (let i = rowIdx - 1; i <= rowIdx + 1; i++) {
@@ -18,11 +18,11 @@ const getCellNeighbours = (rowIdx: number, cellIdx: number, tableRows: TableData
       if (i === rowIdx && j === cellIdx) continue;
 
       // Push 0 if out of table bounds
-      neighbours.push(tableRows?.[i]?.[j] || 0);
+      count += tableRows?.[i]?.[j] || 0;
     }
   }
 
-  return neighbours;
+  return count;
 };
 
 export const useGridTable = (size = GRID_TABLE_DIMENSION): GridTableReturnType => {
@@ -36,17 +36,17 @@ export const useGridTable = (size = GRID_TABLE_DIMENSION): GridTableReturnType =
   // Handle refresh grid table data
   const refresh = () => {
     setRows((prevState) => {
+      // TODO: Test performance. Split in two operations in one loop if needed by iterating from top-left and bottom-right corner of matrix simultaneously. Keeping as simple as possible unless we face any performance issues
       return prevState.map((row, rowIdx) => {
         return row.map((cell, cellIdx) => {
-          const neighbours = getCellNeighbours(rowIdx, cellIdx, prevState);
-          const sumOfNeighbours = neighbours.reduce((prev, curr) => prev + curr, 0);
+          const liveNeighboursCount = getCellLiveNeighboursCount(rowIdx, cellIdx, prevState);
 
           switch (true) {
-            case sumOfNeighbours < 2:
+            case liveNeighboursCount < 2:
               return 0;
-            case cell && [2, 3].includes(sumOfNeighbours):
+            case cell && [2, 3].includes(liveNeighboursCount):
               return 1;
-            case sumOfNeighbours === 3:
+            case liveNeighboursCount === 3:
               return 1;
             default:
               return 0;
