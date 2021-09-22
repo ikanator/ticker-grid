@@ -1,17 +1,8 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 
-import { GridCell } from './GridCell';
-import { GridTableContainer } from './GridTableContainer';
-import { useGridTable } from '../hooks/useGridTable';
-
-const GridTableStyled = styled.table`
-  border-collapse: collapse;
-`;
-
-const GridTableHeadingStyled = styled.h2`
-  margin: 0;
-`;
+import { GridCell } from '../GridCell/GridCell';
+import { GridContainerStyled, GridContentStyled, GridHeadingStyled } from './Grid.styled';
+import { useGridTable } from '../../hooks/useGridTable/useGridTable';
 
 export const GridTable: React.FC = () => {
   const { data, refresh } = useGridTable();
@@ -24,12 +15,12 @@ export const GridTable: React.FC = () => {
 
   // Using index as key is terrible idea for most cases, but is OK here, as they are 100% unique
   return (
-    <GridTableContainer>
-      <GridTableHeadingStyled>Grid ticker</GridTableHeadingStyled>
+    <GridContainerStyled>
+      <GridHeadingStyled>Grid ticker</GridHeadingStyled>
 
-      <GridTableStyled cellSpacing={0} cellPadding={0}>
+      <GridContentStyled cellSpacing={0} cellPadding={0}>
         <tbody>
-          {data.map((row, rowIndex) => (
+          {data.map((row: Array<number>, rowIndex: number) => (
             <tr key={`row-${rowIndex}`}>
               {row.map((cell: number, cellIndex: number) => (
                 <GridCell key={`cell-${rowIndex}${cellIndex}`} filled={Boolean(cell)} />
@@ -37,7 +28,7 @@ export const GridTable: React.FC = () => {
             </tr>
           ))}
         </tbody>
-      </GridTableStyled>
-    </GridTableContainer>
+      </GridContentStyled>
+    </GridContainerStyled>
   );
 };

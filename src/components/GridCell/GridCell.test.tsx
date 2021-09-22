@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from '../theme/theme';
+import { defaultTheme } from '../../theme/theme';
 import { GridCell } from './GridCell';
 
 describe('GridCell', () => {
