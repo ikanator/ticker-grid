@@ -3,12 +3,13 @@ import React, { useEffect } from 'react';
 import { GridCell } from '../GridCell/GridCell';
 import { GridContainerStyled, GridContentStyled, GridHeadingStyled } from './Grid.styled';
 import { useGridTable } from '../../hooks/useGridTable/useGridTable';
+import { REFRESH_INTERVAL } from '../../constants';
 
 export const GridTable: React.FC = () => {
   const { data, refresh } = useGridTable();
 
   useEffect(() => {
-    const interval = setInterval(refresh, 400);
+    const interval = setInterval(refresh, REFRESH_INTERVAL);
 
     return () => clearInterval(interval);
   }, []);
