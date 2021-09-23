@@ -9,9 +9,9 @@ describe('useGridTable', () => {
     const { result } = renderHook(() => useGridTable(3));
 
     expect(result.current.data).toEqual([
-      [0, 0, 0],
-      [1, 1, 1],
-      [0, 0, 0],
+      [false, false, false],
+      [true, true, true],
+      [false, false, false],
     ]);
 
     act(() => {
@@ -19,9 +19,9 @@ describe('useGridTable', () => {
     });
 
     expect(result.current.data).toEqual([
-      [0, 1, 0],
-      [0, 1, 0],
-      [0, 1, 0],
+      [false, true, false],
+      [false, true, false],
+      [false, true, false],
     ]);
 
     act(() => {
@@ -29,9 +29,9 @@ describe('useGridTable', () => {
     });
 
     expect(result.current.data).toEqual([
-      [0, 0, 0],
-      [1, 1, 1],
-      [0, 0, 0],
+      [false, false, false],
+      [true, true, true],
+      [false, false, false],
     ]);
 
     resetMockRandom();
@@ -39,9 +39,9 @@ describe('useGridTable', () => {
 
   it('should calculate live neighbours count', () => {
     const data = [
-      [1, 1, 0],
-      [1, 0, 0],
-      [1, 0, 0],
+      [true, true, false],
+      [true, false, false],
+      [true, false, false],
     ];
 
     expect(getCellLiveNeighboursCount(0, 0, data)).toBe(2);

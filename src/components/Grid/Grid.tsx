@@ -21,10 +21,10 @@ export const GridTable: React.FC = () => {
 
       <GridContentStyled cellSpacing={0} cellPadding={0}>
         <tbody>
-          {data.map((row: Array<number>, rowIndex: number) => (
+          {data.map((row: Array<boolean>, rowIndex: number) => (
             <tr key={`row-${rowIndex}`}>
-              {row.map((cell: number, cellIndex: number) => (
-                <GridCell key={`cell-${rowIndex}${cellIndex}`} filled={Boolean(cell)} />
+              {row.map((cell: boolean, cellIndex: number) => (
+                <GridCell key={`cell-${rowIndex}${cellIndex}`} filled={cell} />
               ))}
             </tr>
           ))}
